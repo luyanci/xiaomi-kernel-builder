@@ -11,7 +11,7 @@ jobs:
     env:
       branch: phoenix-r-oss
       ref-tag: LA.UM.9.1.r1-06700-SMxxx0.0-1
-      debug: true
+      printlog: false
     runs-on: ubuntu-latest
     steps:
       - name: Maximize build space
@@ -34,7 +34,7 @@ jobs:
         run: |
          git clone -b ${{ env.branch }} https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
       - name: print log
-        if: ${{ env.debug == 'true' }}
+        if: ${{ env.printlog == 'true' }}
         run: |
          cd Xiaomi_Kernel_OpenSource
          git log
@@ -42,5 +42,5 @@ jobs:
         run: |
          mkdir QAEP
          cd QAEP
-         repo init -u git://codeaurora.org/platform/manifest.git -b release -m ${{ env.ref-tag }}.xml --repo-url=git://codeaurora.org/tools/repo.git --repo-branch=caf-stable
+         repo init -u git://git.codelinaro.org/la/platform/manifest.git -b release -m ${{ env.ref-tag }}.xml --repo-url=git://git.codelinaro.org/tools/repo.git --repo-branch=caf-stable
          repo sync -j$(nproc)
