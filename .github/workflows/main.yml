@@ -32,9 +32,7 @@ jobs:
          sudo apt install repo
       - name: Get kernel source
         run: |
-         git clone https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
-         cd Xiaomi_Kernel_OpenSource
-         git checkout ${{ env.branch }}
+         git clone -b ${{ env.branch }} https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
       - name: print log
         if: ${{ env.debug == 'true' }}
         run: |
