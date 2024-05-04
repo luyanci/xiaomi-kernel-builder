@@ -8,7 +8,6 @@ on:
 
 jobs:
   builder:
-    strategy:
     env:
       branch: phoenix-r-oss
       ref-tag: 123
