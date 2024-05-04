@@ -25,7 +25,7 @@ jobs:
           remove-codeql: 'true'
           remove-docker-images: 'true'
       - name: Setup java
-        uses: action/setup-java@v3
+        uses: actions/setup-java@v3
         with:
           distribution: oracle
           java-version: 8
