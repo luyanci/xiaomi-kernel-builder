@@ -9,7 +9,7 @@ jobs:
     strategy:
     env:
       branch: phoenix-r-oss
-      
+      ref-tag: 123
     runs-on: ubuntu-latest
     steps:
       - name: Maximize build space
@@ -29,3 +29,22 @@ jobs:
           distribution: oracle
           java-version: 8
           java-package: jdk
+      - name: Setup repo
+        run: |
+         sudo apt update
+         sudo apt install repo
+      - name: Get kernel source
+        run: |
+         git clone git@github.com:MiCode/Xiaomi_Kernel_OpenSource.git
+         cd Xiaomi_Kernel_OpenSource
+         git checkout ${{ env.branch }}
+      - name: print log
+        run: |
+         cd Xiaomi_Kernel_OpenSource
+         git log
+      - name: Get QAEP
+        run: |
+         mkdir QAEP
+         cd QAEP
+         repo init -u git://codeaurora.org/platform/manifest.git -b release -m ${{ env.ref-tag }}.xml --repo-url=git://codeaurora.org/tools/repo.git --repo-branch=caf-stable
+         repo sync -j$(nproc)
