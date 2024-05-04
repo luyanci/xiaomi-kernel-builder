@@ -26,4 +26,6 @@ jobs:
       - name: Setup java
         uses: action/setup-java@v3
         with:
-          
+          distribution: oracle
+          java-version: 8
+          java-package: jdk
