@@ -24,15 +24,10 @@ jobs:
           remove-haskell: 'true'
           remove-codeql: 'true'
           remove-docker-images: 'true'
-      - name: Setup java
-        uses: actions/setup-java@v3
-        with:
-          distribution: oracle
-          java-version: 8
-          java-package: jdk
-      - name: Setup repo
+      - name: Install Environment
         run: |
          sudo apt update
+         sudo apt install openjdk-8-jdk
          sudo apt install repo
       - name: Get kernel source
         run: |
