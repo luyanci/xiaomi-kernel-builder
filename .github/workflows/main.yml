@@ -10,7 +10,8 @@ jobs:
   builder:
     env:
       branch: phoenix-r-oss
-      ref-tag: 123
+      ref-tag: LA.UM.9.1.r1-06700-SMxxx0.0-1
+      debug: true
     runs-on: ubuntu-latest
     steps:
       - name: Maximize build space
@@ -35,6 +36,7 @@ jobs:
          cd Xiaomi_Kernel_OpenSource
          git checkout ${{ env.branch }}
       - name: print log
+        if: ${{ env.debug == 'true' }}
         run: |
          cd Xiaomi_Kernel_OpenSource
          git log
