@@ -40,4 +40,7 @@ jobs:
         run: |
          git clone -b ${{ env.branch }} https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
       - name: Get llvm
-        uses: 
+        id: tools
+        uses:  KyleMayes/install-llvm-action@v2
+        with:
+          version: "12.0.1"
