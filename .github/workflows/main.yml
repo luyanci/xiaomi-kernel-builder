@@ -43,4 +43,4 @@ jobs:
         id: tools
         uses:  KyleMayes/install-llvm-action@v2
         with:
-          version: "12.0.1"
+          version: "12.0"
