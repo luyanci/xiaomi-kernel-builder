@@ -2,23 +2,19 @@ name: Builder
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main # default branch
+  #push:
+  #  branches:
+  #    - main # default branch
 
 jobs:
   builder:
-    env:
-      branch: phoenix-r-oss
-      ref-tag: LA.UM.9.1.r1-06700-SMxxx0.0-1
-      printlog: false
     runs-on: ubuntu-latest
     steps:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
-          root-reserve-mb: 20480
-          temp-reserve-mb: 10240
+          root-reserve-mb: 2048
+          temp-reserve-mb: 1024
           swap-size-mb: 10240
           remove-dotnet: 'true'
           remove-android: 'true'
@@ -36,11 +32,11 @@ jobs:
          sudo apt-get install -y pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl 
          sudo apt-get install -y zip unzip tar gzip bzip2 rar unrar llvm g++-multilib bison gperf zlib1g-dev automake
 
-      - name: Get kernel source
+      - name: 📥 Install repo tool (下载repo工具)
         run: |
-         git clone -b ${{ env.branch }} https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git
-      - name: Get llvm
-        id: tools
-        uses:  KyleMayes/install-llvm-action@v2
-        with:
-          version: "12.0"
+         curl https://storage.googleapis.com/git-repo-downloads/repo > ~/repo
+         chmod a+x ~/repo
+         sudo mv ~/repo /usr/local/bin/repo
+      - name: sync yaap
+        run: |
+         echo todo
