@@ -39,6 +39,8 @@ jobs:
          chmod a+x ~/repo
          sudo mv ~/repo /usr/local/bin/repo
       - name: sync yaap
-        working-
+        working-directory: "yaap"
         run: |
-         echo todo
+         repo init -u https://github.com/yaap/manifest.git -b sixteen --git-lfs
+         repo sync -j$(nproc --all) --no-tags --no-clone-bundle --current-branch
+         lunch 
